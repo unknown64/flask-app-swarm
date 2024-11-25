@@ -24,14 +24,14 @@ jobs:
       # Étape 3 : Pull de l'image existante depuis le registre Docker
       - name: Pull existing image
         run: |
-          docker pull your-docker-repo/your-image:latest || true
+          docker pull unknown64/flask-app-swarm:latest || true
 
       # Étape 4 : Construire l'image Docker
       - name: Build the Docker image
         run: |
-          docker build -t your-docker-repo/your-image:latest .
+          docker build -t unknown64/flask-app-swarm:latest .
 
       # Étape 5 : Pousser l'image vers le registre Docker
       - name: Push the Docker image
         run: |
-          docker push your-docker-repo/your-image:latest
+          docker push unknown64/flask-app-swarm:latest
