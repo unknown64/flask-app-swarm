@@ -39,18 +39,14 @@ jobs:
 
     steps:
       - name: Deploy updated image to Docker Swarm
-     uses: appleboy/ssh-action@v0.1.7
-     with:
-     host: ${{ secrets.NGROK_HOST }}
-     port: ${{ secrets.NGROK_PORT }}
-     username: ${{ secrets.SSH_USERNAME }}
-     key: ${{ secrets.SSH_PRIVATE_KEY }}
-     script: |
-       echo "Deploying image: $IMAGE_TAG"
-       docker service update --image $IMAGE_TAG flask-app-service
-     env:
-       IMAGE_TAG: 7shinomiya/flask-app-swarm:${{ github.sha }}
-
-
-  
-
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.NGROK_HOST }}
+          port: ${{ secrets.NGROK_PORT }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo "Deploying image: $IMAGE_TAG"
+            docker service update --image $IMAGE_TAG flask-app-service
+        env:
+          IMAGE_TAG: 7shinomiya/flask-app-swarm:${{ github.sha }}
