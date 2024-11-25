@@ -25,7 +25,8 @@ jobs:
       - name: Set up Docker image tag
         id: vars
         run: |
-          echo "IMAGE_TAG=unknown64/flask-app-swarm:${GITHUB_SHA::7}" >> $GITHUB_ENV
+          echo "IMAGE_TAG=7shinomiya/flask-app-swarm:${GITHUB_SHA::7}" >> $GITHUB_ENV
+
 
       # Étape 4 : Construire l'image Docker
       - name: Build the Docker image
@@ -41,5 +42,5 @@ jobs:
       - name: Tag and push as latest
         if: github.ref == 'refs/heads/main'
         run: |
-          docker tag $IMAGE_TAG unknown64/flask-app-swarm:latest
-          docker push unknown64/flask-app-swarm:latest
+          docker tag $IMAGE_TAG 7shinomiya/flask-app-swarm:latest
+          docker push 7shinomiya/flask-app-swarm:latest
