@@ -47,6 +47,4 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker service update \
-              --image $IMAGE_TAG \
-              flask-app-service
+            docker service update --image $IMAGE_TAG flask-app-service
