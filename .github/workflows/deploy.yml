@@ -38,15 +38,15 @@ jobs:
     needs: build-and-push
 
     steps:
-      - name: Deploy updated image to Docker Swarm
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: ${{ secrets.NGROK_HOST }}
-          port: ${{ secrets.NGROK_PORT }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            echo "Deploying image: $IMAGE_TAG"
-            docker service update --image $IMAGE_TAG flask-app-service
-        env:
-          IMAGE_TAG: 7shinomiya/flask-app-swarm:${{ github.sha }}
+        - name: Deploy updated image to Docker Swarm
+          uses: appleboy/ssh-action@v0.1.7
+          with:
+            host: ${{ secrets.PINGGY_HOST }}
+            port: 443
+            username: qr
+            key: ${{ secrets.PINGGY_PRIVATE_KEY }}
+            script: |
+              echo "Deploying image: $IMAGE_TAG"
+              docker service update --image $IMAGE_TAG flask-app-service
+              echo "Starting Pinggy tunnel..."
+              ssh -p 443 -R0:127.0.0.1:8000 qr@a.pinggy.io
