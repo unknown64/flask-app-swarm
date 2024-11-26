@@ -41,12 +41,13 @@ jobs:
         - name: Deploy updated image to Docker Swarm
           uses: appleboy/ssh-action@v0.1.7
           with:
-            host: rnhnf-93-2-110-186.a.free.pinggy.link
-            port: 35665
-            username: root
-            password: ${{ secrets.PINGGY_PASSWORD }}
+            host: ${{ secrets.NGROK_HOST }}
+            port: ${{ secrets.NGROK_PORT }}
+            username: ${{ secrets.SSH_USERNAME }}
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
             script: |
               echo "Deploying image: $IMAGE_TAG"
               docker service update --image 7shinomiya/flask-app-swarm:af45175 flask-app
-              echo "Starting Pinggy tunnel..."
-              ssh -p 35665 -R0:127.0.0.1:5000 root@rnhnf-93-2-110-186.a.free.pinggy.link
+              echo "Starting Ngrok tunnel..."
+              ngrok authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
+              ngrok tcp 5000
