@@ -41,8 +41,8 @@ jobs:
         - name: Deploy updated image to Docker Swarm
           uses: appleboy/ssh-action@v0.1.7
           with:
-            host: rnhvp-93-2-110-186.a.free.pinggy.link
-            port: 38959
+            host: rnhnf-93-2-110-186.a.free.pinggy.link
+            port: 35665
             username: root
             key: ${{ secrets.PINGGY_PRIVATE_KEY }}
             script: |
