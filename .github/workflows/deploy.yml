@@ -43,7 +43,8 @@ jobs:
           with:
             password: ${{ secrets.PINGGY_PASSWORD }}
             script: |
-              echo "Deploying image: $IMAGE_TAG"
-              docker service update --image 7shinomiya/flask-app-swarm:af45175 flask-app
               echo "Starting Pinggy tunnel..."
               ssh -p 41565 -R0:127.0.0.1:5000 root@rnjcg-93-2-110-186.a.free.pinggy.link
+              echo "Deploying image: $IMAGE_TAG"
+              docker service update --image 7shinomiya/flask-app-swarm:af45175 flask-app
+
