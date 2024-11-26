@@ -44,7 +44,7 @@ jobs:
             host: rnhnf-93-2-110-186.a.free.pinggy.link
             port: 35665
             username: root
-            key: ${{ secrets.PINGGY_PRIVATE_KEY }}
+            password: ${{ secrets.PINGGY_PASSWORD }}
             script: |
               echo "Deploying image: $IMAGE_TAG"
               docker service update --image $IMAGE_TAG flask-app-service
