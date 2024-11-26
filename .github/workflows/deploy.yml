@@ -41,8 +41,8 @@ jobs:
         name: Update service image on Swarm manager
         uses: appleboy/ssh-action@v1.2.0
         with:
-          host: rnjcg-93-2-110-186.a.free.pinggy.link
+          host: ${{ secrets.PINGGY_HOST }}
           username: root
-          password: Etudiant_007
-          port: 41565
-          script: docker service update --image 7shinomiya/flask-app-swarm:af45175 flask-app
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PINGGY_PORT }}
+          script: docker service update --image 7shinomiya/flask-app-swarm:latest flask-app
