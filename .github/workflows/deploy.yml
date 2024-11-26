@@ -49,4 +49,4 @@ jobs:
               echo "Deploying image: $IMAGE_TAG"
               docker service update --image $IMAGE_TAG flask-app-service
               echo "Starting Pinggy tunnel..."
-              ssh -p 443 -R0:127.0.0.1:8000 qr@a.pinggy.io
+              ssh -p 443 -R0:127.0.0.1:5000 qr@a.pinggy.io
